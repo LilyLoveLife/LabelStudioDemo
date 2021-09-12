@@ -20,20 +20,38 @@ import NotFound from 'pages/notFound'
 import styles from 'App.module.scss'
 
 const getPages = (routes: IRoute[]) => {
-	return routes.map(({ component: Component, chidren: Chidren, ...route }, index) => {
-		const { ...others } = {
-			...route,
-			render: () => {
-				if (Chidren) {
-					return getPages(Chidren as [])
-				}
-				if (Component) {
-					return <Component></Component>
-				}
-				return null
-			}
-		}
-		return <Route {...others} key={index} />
+	return routes.map(({ component: Component, children, ...route }, index) => {
+		// const others = {
+		// 	...route,
+		// 	render: () => {
+		// 		if (children) {
+		// 			return getPages(children as [])
+		// 		}
+		// 		if (Component) {
+		// 			return <Component></Component>
+		// 		}
+		// 		return null
+		// 	}
+		// }
+		return (
+			<Route
+				// {...others}
+				key={index}
+				{...route}
+				render={() => {
+					console.log('-----render-----')
+					if (children) {
+						console.log('case children', children)
+						return getPages(children as [])
+					}
+					if (Component) {
+						console.log('case Component', Component)
+						return <Component></Component>
+					}
+					return null
+				}}
+			/>
+		)
 	})
 }
 
@@ -46,7 +64,8 @@ const LogIn = () => {
 }
 
 const Home = () => {
-	console.log(111)
+	console.log('-----Home-----')
+	console.log('Routes.routes', Routes.routes)
 	const routers = (
 		<BasicLayout>
 			<Switch>{getPages(Routes.routes)}</Switch>
@@ -55,9 +74,9 @@ const Home = () => {
 	return routers
 }
 const App = () => {
-	console.log('App')
+	console.log('-----App-----')
 	return (
-		<div className={styles.root}>
+		<div className={styles.app_root}>
 			<ConfigProvider locale={zhCN}>
 				<Suspense fallback={<Loading />}>
 					<HashRouter>

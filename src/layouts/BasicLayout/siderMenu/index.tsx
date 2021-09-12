@@ -19,10 +19,10 @@ interface ISiderMenuProps {
 
 const renderMenu = (routes: IRoute[]) => {
 	return routes.map((route: any) => {
-		const { path, chidren, title } = route
-		return Array.isArray(chidren) ? (
+		const { path, children, title } = route
+		return Array.isArray(children) ? (
 			<Menu.SubMenu key={path} title={title}>
-				{renderMenu(chidren)}
+				{renderMenu(children)}
 			</Menu.SubMenu>
 		) : (
 			<Menu.Item key={path} title={title}>
@@ -40,7 +40,7 @@ const getOpenKeys = (key: string, routes: IRoute[]): string[] => {
 				openKeys.push(route.path)
 				return true
 			}
-			if (helper(route.chidren || [])) {
+			if (helper(route.children || [])) {
 				openKeys.push(route.path as string)
 				return true
 			}
@@ -63,8 +63,8 @@ const SiderMenu: React.FC<ISiderMenuProps> = ({ SiderProps: SiderProps }: ISider
 		MenuList = MenuList.filter((menu: any) => menu.auth !== 'OnlyAdmin')
 	}
 	MenuList = MenuList.filter((item: any) => {
-		if (item.chidren) {
-			item.chidren = item.chidren.filter((child: any) => {
+		if (item.children) {
+			item.children = item.children.filter((child: any) => {
 				const flag = (userInfo?.roleCode === 'teacher' && child?.auth === 'OnlyAdmin') || child.hideInMenu
 				return !flag
 			})

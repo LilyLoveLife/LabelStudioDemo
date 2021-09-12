@@ -11,7 +11,7 @@ interface IRoute {
     component?: Promise | (() => any);
     icon?: Promise | (() => any);
     title?: string;
-    chidren?: IRoute[];
+    children?: IRoute[];
     hideInMenu?: boolean;
     auth?: string;
     notLazy?: boolean;

@@ -6,7 +6,7 @@
  */
 
 import React from 'react'
-import Index from 'pages/index'
+// import Index from 'pages/index'
 
 const loginRoutes: IRoute[] = [
 	{
@@ -15,8 +15,7 @@ const loginRoutes: IRoute[] = [
 		component: () => import('pages/user/login')
 	},
 	{
-		notLazy: true,
-		component: Index
+		component: () => import('pages/index')
 	}
 ]
 
@@ -25,24 +24,31 @@ const routes: IRoute[] = [
 		exact: true,
 		path: '/',
 		title: '首页',
-		component: Index,
-		notLazy: true
+		component: () => import('pages/index')
+	},
+	{
+		exact: true,
+		path: '/video',
+		title: '视频',
+		component: () => import('pages/video')
 	},
 	{
 		exact: true,
 		path: '/management',
 		title: '管理',
-		chidren: [
+		children: [
 			{
 				path: '/management/list',
 				title: '列表',
-				component: () => import('pages/management/list')
+				component: () => import('pages/management/list'),
+				exact: true
 			},
 			{
 				path: '/management/detail',
 				title: '详情',
 				component: () => import('pages/management/detail'),
-				hideInMenu: true
+				hideInMenu: true,
+				exact: true
 			}
 		]
 	}
@@ -50,11 +56,15 @@ const routes: IRoute[] = [
 
 function addLazyComponent(routes: IRoute[]) {
 	routes.forEach(route => {
-		if (route.component && !route.notLazy) {
+		// if (route.component && !route.not-Lazy) {
+		// console.log('------addLazyComponent-----')
+		if (route.component) {
+			// console.log('-----addLazyComponent component-----', route.component)
 			route.component = React.lazy(route.component)
 		}
-		if (route.chidren) {
-			addLazyComponent(route.chidren)
+		if (route.children) {
+			// console.log('----------addLazyComponent children----------', route.children)
+			addLazyComponent(route.children)
 		}
 	})
 }

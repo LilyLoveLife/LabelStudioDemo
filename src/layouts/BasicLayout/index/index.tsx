@@ -34,11 +34,13 @@ const BasicLayout = (props: any) => {
 	// 	</Layout>
 	// )
 	// const token = 1
+	console.log('------BasicLayout-------')
 	return !token ? (
 		<Layout className={styles.root}>
 			<SiderMenu SiderProps={SiderProps} />
 			<Layout className={styles.main}>
 				<Header openSider={SiderProps.collapsed} toggleSider={toggle} />
+				{/* {console.log('BasicLayout content, props.children:', props.children)} */}
 				<Content className={styles.mainContent}>{props.children}</Content>
 			</Layout>
 		</Layout>
