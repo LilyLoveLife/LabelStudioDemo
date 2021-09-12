@@ -4,7 +4,7 @@
  * @Author:
  * @Date: 2021-09-12 21:34:36
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-09-12 23:29:55
+ * @LastEditTime: 2021-09-12 23:37:38
  */
 /*
  * @Author: your name
@@ -27,9 +27,9 @@ const Index: React.FC<any> = () => {
 		labelInstance.current = new LabelStudio('label-studio', {
 			config: `
 			  <View>
-			  <Header value="Select regions:"></Header>
+			  <Header value="选择区域:"></Header>
 			  <AudioPlus name="audio" value="$url"></AudioPlus>
-			  <Header>How many instruments in this audio?</Header>
+			  <Header>音频中使用了多少种乐器?</Header>
 			 
 				<Labels name="label" toName="audio" choice="multiple">
 				  <Label value="Beat" background="yellow"></Label>
@@ -53,10 +53,10 @@ const Index: React.FC<any> = () => {
 				'side-column',
 				'annotations:menu',
 				'annotations:add-new',
-				'annotations:delete',
-				'predictions:menu',
-				'predictions:add-new',
-				'predictions:delete'
+				'annotations:delete'
+				// 'predictions:menu',
+				// 'predictions:add-new',
+				// 'predictions:delete'
 			],
 
 			user: {
