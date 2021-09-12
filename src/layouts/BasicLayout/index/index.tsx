@@ -24,10 +24,20 @@ const BasicLayout = (props: any) => {
 	const toggle = useCallback(() => setSiderProps({ collapsed: !SiderProps.collapsed }), [SiderProps.collapsed])
 
 	const token = localStorage.getItem('TEST_TOKEN')
-	return token ? (
+	// return (
+	// 	<Layout className={styles.root}>
+	// 		<SiderMenu SiderProps={SiderProps} />
+	// 		<Layout>
+	// 			<Header openSider={SiderProps.collapsed} toggleSider={toggle} />
+	// 			<Content className={styles.mainContent}>{props.children}</Content>
+	// 		</Layout>
+	// 	</Layout>
+	// )
+	// const token = 1
+	return !token ? (
 		<Layout className={styles.root}>
 			<SiderMenu SiderProps={SiderProps} />
-			<Layout>
+			<Layout className={styles.main}>
 				<Header openSider={SiderProps.collapsed} toggleSider={toggle} />
 				<Content className={styles.mainContent}>{props.children}</Content>
 			</Layout>

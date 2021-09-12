@@ -1,4 +1,6 @@
 .root {
+    display: flex;
+    width: 100%;
      :global(.logo) {
         height: 50px;
         padding-left: 24px;
@@ -13,6 +15,9 @@
             overflow: hidden;
             font-weight: bold;
         }
+    }
+    .main {
+        flex: 1
     }
 }
 

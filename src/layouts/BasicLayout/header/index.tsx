@@ -12,7 +12,7 @@ import { Layout, Popover, Form, Modal, Button, Input } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import UserImg from 'images/icon_user.jpg'
 
-import './index.module.scss'
+import './index.scss'
 
 interface IHeaderProps {
 	openSider: boolean
@@ -69,7 +69,7 @@ const Header = (props: IHeaderProps) => {
 					<Popover content={content} getPopupContainer={getPopupContainer}>
 						<div className="user-content">
 							<img className="user-img" alt="头像" src={UserImg} />
-							<p className="user-name">{(JSON.parse(localStorage.getItem('TEST_USERINFO') || '') || {}).name}</p>
+							{/* <p className="user-name">{(JSON.parse(localStorage.getItem('TEST_USERINFO') || '') || {}).name}</p> */}
 						</div>
 					</Popover>
 				</div>
